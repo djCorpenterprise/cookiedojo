@@ -190,15 +190,27 @@ input::placeholder,textarea::placeholder{color:rgba(61,43,24,.33)}
 textarea{resize:none;line-height:1.5}
 
 /* Order summary */
-.o-summary{background:var(--cream);border:1px solid var(--parchment);border-radius:4px;padding:18px;margin-bottom:18px}
-.o-sum-title{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
-.o-sum-lines{min-height:30px}
-.o-sum-line{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid rgba(200,114,26,.08)}
-.o-sum-line:last-child{border-bottom:none}
-.o-sum-empty{font-size:12px;color:rgba(61,43,24,.35);font-style:italic}
-.o-sum-total{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1.5px solid var(--parchment)}
-.o-sum-total-lbl{font-family:var(--font-display);font-size:18px;font-weight:700}
-.o-sum-total-val{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--amber)}
+.cart-panel{position:sticky;top:90px;background:var(--white);border-radius:8px;border:1px solid rgba(200,114,26,.18);overflow:hidden;box-shadow:0 4px 24px rgba(28,18,9,.07)}
+.cart-header{background:var(--ink);padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+.cart-header-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--cream)}
+.cart-count{background:var(--amber);color:var(--white);font-size:11px;font-weight:700;min-width:22px;height:22px;border-radius:11px;padding:0 6px;display:flex;align-items:center;justify-content:center}
+.cart-body{padding:20px 22px}
+.cart-empty{text-align:center;padding:24px 0 16px;font-size:13px;color:rgba(61,43,24,.4);font-style:italic;line-height:1.6}
+.cart-lines{margin-bottom:4px}
+.cart-line{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(200,114,26,.08);gap:8px}
+.cart-line:last-child{border-bottom:none}
+.cart-line-left{flex:1}
+.cart-line-name{font-size:13px;font-weight:500;color:var(--ink)}
+.cart-line-meta{font-size:11px;color:var(--ink-soft);margin-top:2px}
+.cart-line-price{font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
+.cart-remove{background:none;border:none;color:rgba(61,43,24,.25);cursor:pointer;font-size:18px;padding:0;line-height:1;transition:color .15s;flex-shrink:0}
+.cart-remove:hover{color:var(--red)}
+.cart-total-block{border-top:2px solid var(--parchment);padding-top:16px;margin-top:8px;margin-bottom:20px}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline}
+.cart-total-lbl{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--ink)}
+.cart-total-val{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--amber)}
+.checkout-section-lbl{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin:16px 0 10px;display:block}
+.checkout-fields{display:flex;flex-direction:column;gap:9px;margin-bottom:4px}
 
 /* Stripe */
 .stripe-lbl{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:6px;margin-bottom:10px}
@@ -277,9 +289,9 @@ footer{background:var(--ink);padding:56px 80px 36px}
   .testi-grid{grid-template-columns:1fr}
   .about-section{grid-template-columns:1fr;gap:36px}
   .faq-grid{grid-template-columns:1fr}
-  .order-inner{grid-template-columns:1fr}
-  .order-left{display:none}
-  .order-right{padding:40px 24px}
+  .order-section{padding:60px 20px}
+  .order-layout{grid-template-columns:1fr}
+  .cart-panel{position:static}
   .gallery-strip{grid-template-columns:1fr 1fr}
   .footer-top{grid-template-columns:1fr 1fr;gap:36px}
   .footer-bottom{flex-direction:column;gap:8px;text-align:center}
@@ -543,25 +555,16 @@ footer{background:var(--ink);padding:56px 80px 36px}
 </section>
 
 <!-- ORDER SECTION -->
-<section class="order-section" id="order" style="padding:0">
-  <div class="order-inner">
-    <!-- Left panel -->
-    <div class="order-left">
-      <span class="sec-eye">Place Your Order</span>
-      <h2 class="sec-title" style="font-size:clamp(32px,3.5vw,52px)">Fresh treats,<br><em>delivered</em></h2>
-      <p class="sec-lead" style="color:rgba(28,18,9,.65)">Select your items, enter your details, and pay securely. We'll confirm your order and reach out about delivery or pickup.</p>
-      <div class="order-perks">
-        <div class="order-perk"><div class="order-perk-dot"></div>Secure payment via Stripe</div>
-        <div class="order-perk"><div class="order-perk-dot"></div>Instant email receipt</div>
-        <div class="order-perk"><div class="order-perk-dot"></div>48-hour lead time</div>
-        <div class="order-perk"><div class="order-perk-dot"></div>Jacksonville delivery & pickup</div>
-        <div class="order-perk"><div class="order-perk-dot"></div>Custom notes welcome</div>
-      </div>
-    </div>
-
-    <!-- Right panel — order form -->
-    <div class="order-right">
-      <div class="order-form-title">Build Your Order</div>
+<section class="order-section" id="order">
+  <div class="order-section-header fade-in">
+    <span class="sec-eye">Place Your Order</span>
+    <h2 class="sec-title">Build your <em>order</em></h2>
+    <p class="sec-lead">Tap an item to add it to your cart. When you're ready, fill in your details and pay securely below.</p>
+  </div>
+  <div class="order-layout">
+    <!-- LEFT: products -->
+    <div>
+      <div class="order-form-title">Choose Your Items</div>
 
       <!-- Products -->
       <div class="o-products" id="oProdList">
@@ -652,36 +655,60 @@ footer{background:var(--ink);padding:56px 80px 36px}
         </div>
       </div>
 
-      <!-- Customer Info -->
-      <label class="form-label">Your Information</label>
-      <div class="form-fields">
-        <input type="text" id="cName" placeholder="Full name">
-        <input type="email" id="cEmail" placeholder="Email (receipt sent here)">
-        <input type="tel" id="cPhone" placeholder="Phone number">
-        <textarea id="cAddress" rows="2" placeholder="Delivery address — or write 'Pickup'"></textarea>
-        <textarea id="cNotes" rows="2" placeholder="Custom notes: colors, occasion, allergies..."></textarea>
-      </div>
-
-      <!-- Order Summary -->
-      <div class="o-summary">
-        <div class="o-sum-title">Order Summary</div>
-        <div class="o-sum-lines" id="oSumLines"><div class="o-sum-empty">Select items above</div></div>
-        <div class="o-sum-total">
-          <span class="o-sum-total-lbl">Total</span>
-          <span class="o-sum-total-val" id="oTotal">$0.00</span>
-        </div>
-      </div>
-
-      <!-- Payment -->
-      <div class="stripe-lbl">🔒 Payment</div>
-      <div class="stripe-wrap" id="stripeWrap"><div id="cardEl"></div></div>
-      <div class="err-msg" id="errMsg"></div>
-      <button class="btn-pay" id="payBtn" onclick="submitOrder()" disabled>
-        <span id="payTxt">Select items to order</span>
-        <div class="spinner" id="paySpinner"></div>
-      </button>
-      <p class="pay-note">Payments secured by Stripe · Your card is never stored</p>
     </div>
+
+    <!-- RIGHT: sticky cart -->
+    <div class="cart-panel" id="cartPanel">
+      <div class="cart-header">
+        <div class="cart-header-title">Your Cart</div>
+        <div class="cart-count" id="cartCount">0</div>
+      </div>
+      <div class="cart-body">
+
+        <!-- Empty state -->
+        <div class="cart-empty" id="cartEmpty">
+          <div>🛒</div>
+          Tap any item on the left to add it to your cart
+        </div>
+
+        <!-- Line items -->
+        <div class="cart-lines" id="cartLines" style="display:none"></div>
+
+        <!-- Total -->
+        <div class="cart-total-block" id="cartTotalBlock" style="display:none">
+          <div class="cart-total-row">
+            <span class="cart-total-lbl">Total</span>
+            <span class="cart-total-val" id="cartTotalVal">$0.00</span>
+          </div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;">48hr lead time · Jacksonville delivery</div>
+        </div>
+
+        <!-- Checkout form — shown once cart has items -->
+        <div id="checkoutForm" style="display:none">
+          <span class="checkout-section-lbl">Your Information</span>
+          <div class="checkout-fields">
+            <input type="text" id="cName" placeholder="Full name">
+            <input type="email" id="cEmail" placeholder="Email (receipt sent here)">
+            <input type="tel" id="cPhone" placeholder="Phone number">
+            <textarea id="cAddress" rows="2" placeholder="Delivery address — or write 'Pickup'"></textarea>
+            <textarea id="cNotes" rows="2" placeholder="Colors, occasion, allergies..."></textarea>
+          </div>
+
+          <span class="checkout-section-lbl">🔒 Payment</span>
+          <div class="stripe-wrap" id="stripeWrap"><div id="cardEl"></div></div>
+
+          <div class="err-msg" id="errMsg"></div>
+
+          <button class="btn-pay" id="payBtn" onclick="submitOrder()">
+            <span id="payTxt">Pay Now</span>
+            <div class="spinner" id="paySpinner"></div>
+          </button>
+          <p class="pay-note">Secured by Stripe · Card never stored</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -760,46 +787,85 @@ cardEl.mount('#cardEl');
 cardEl.on('focus', () => document.getElementById('stripeWrap').classList.add('focused'));
 cardEl.on('blur',  () => document.getElementById('stripeWrap').classList.remove('focused'));
 
-// ── ORDER STATE ──
+// ── CART STATE ──
 const prices = {macaroons:18,pops:3.99,sushi:18,variety:24,superbox:44.99};
 const qtys   = {macaroons:1,pops:1,sushi:1,variety:1,superbox:1};
-const names  = {macaroons:'Coconut Macaroons',pops:'Rice Crispy Pops',sushi:'Candy Sushi Tray',variety:'Variety Box',superbox:'Super Box'};
-const sel    = new Set();
+const labels = {macaroons:'Coconut Macaroons',pops:'Rice Crispy Pops',sushi:'Candy Sushi Tray',variety:'Variety Box',superbox:'Super Box'};
+const cart   = {}; // id -> qty
 
 function toggleProd(card) {
   const id = card.dataset.id;
-  sel.has(id) ? (sel.delete(id), card.classList.remove('sel')) : (sel.add(id), card.classList.add('sel'));
-  updateSummary();
+  if(cart[id]) {
+    removeFromCart(id);
+  } else {
+    cart[id] = qtys[id];
+    card.classList.add('sel');
+    renderCart();
+  }
 }
 
 function chQty(id, d) {
   qtys[id] = Math.max(1, qtys[id]+d);
   document.getElementById('oqty-'+id).textContent = qtys[id];
-  updateSummary();
+  if(cart[id]) { cart[id] = qtys[id]; renderCart(); }
 }
 
-function updateSummary() {
-  let sub = 0, html = '';
-  if(sel.size === 0) {
-    html = '<div class="o-sum-empty">Select items above</div>';
-  } else {
-    sel.forEach(id => {
-      const lt = prices[id]*qtys[id];
-      sub += lt;
-      html += `<div class="o-sum-line"><span>${names[id]} ×${qtys[id]}</span><span>$${lt.toFixed(2)}</span></div>`;
-    });
+function removeFromCart(id) {
+  delete cart[id];
+  const card = document.querySelector('.o-prod[data-id="'+id+'"]');
+  if(card) card.classList.remove('sel');
+  renderCart();
+}
+
+function renderCart() {
+  const ids = Object.keys(cart);
+  const count = ids.length;
+  let total = 0;
+
+  // Count badge
+  document.getElementById('cartCount').textContent = count;
+
+  if(count === 0) {
+    document.getElementById('cartEmpty').style.display = 'block';
+    document.getElementById('cartLines').style.display = 'none';
+    document.getElementById('cartTotalBlock').style.display = 'none';
+    document.getElementById('checkoutForm').style.display = 'none';
+    return;
   }
-  document.getElementById('oSumLines').innerHTML = html;
-  document.getElementById('oTotal').textContent = '$'+sub.toFixed(2);
-  const btn = document.getElementById('payBtn');
-  const txt = document.getElementById('payTxt');
-  if(sel.size > 0) { btn.disabled=false; txt.textContent='Pay $'+sub.toFixed(2); }
-  else { btn.disabled=true; txt.textContent='Select items to order'; }
+
+  // Build line items
+  let linesHtml = '';
+  ids.forEach(id => {
+    const qty = cart[id];
+    const lt  = prices[id] * qty;
+    total += lt;
+    linesHtml += `
+      <div class="cart-line">
+        <div class="cart-line-left">
+          <div class="cart-line-name">${labels[id]}</div>
+          <div class="cart-line-meta">qty ${qty} · $${prices[id].toFixed(2)} each</div>
+        </div>
+        <div class="cart-line-price">$${lt.toFixed(2)}</div>
+        <button class="cart-remove" onclick="removeFromCart('${id}')" title="Remove">×</button>
+      </div>`;
+  });
+
+  document.getElementById('cartEmpty').style.display = 'none';
+  document.getElementById('cartLines').style.display = 'block';
+  document.getElementById('cartLines').innerHTML = linesHtml;
+  document.getElementById('cartTotalBlock').style.display = 'block';
+  document.getElementById('cartTotalVal').textContent = '$' + total.toFixed(2);
+  document.getElementById('checkoutForm').style.display = 'block';
+  document.getElementById('payTxt').textContent = 'Pay $' + total.toFixed(2);
 }
 
 function selectAndScroll(id) {
-  const card = document.querySelector('.o-prod[data-id="'+id+'"]');
-  if(card && !sel.has(id)) { sel.add(id); card.classList.add('sel'); updateSummary(); }
+  if(!cart[id]) {
+    cart[id] = qtys[id];
+    const card = document.querySelector('.o-prod[data-id="'+id+'"]');
+    if(card) card.classList.add('sel');
+    renderCart();
+  }
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 }
 
@@ -815,11 +881,11 @@ async function submitOrder() {
 
   if(!name||!email||!phone) { errEl.textContent='Please fill in name, email, and phone.'; errEl.classList.add('show'); return; }
   if(!email.includes('@')) { errEl.textContent='Please enter a valid email address.'; errEl.classList.add('show'); return; }
-  if(sel.size===0) { errEl.textContent='Please select at least one item.'; errEl.classList.add('show'); return; }
+  if(Object.keys(cart).length===0) { errEl.textContent='Please select at least one item.'; errEl.classList.add('show'); return; }
 
   let subtotal=0;
   const items=[];
-  sel.forEach(id => { const lt=prices[id]*qtys[id]; subtotal+=lt; items.push({id,name:names[id],qty:qtys[id],price:prices[id],lineTotal:lt}); });
+  Object.keys(cart).forEach(id => { const qty=cart[id]; const lt=prices[id]*qty; subtotal+=lt; items.push({id,name:labels[id],qty,price:prices[id],lineTotal:lt}); });
 
   document.getElementById('payBtn').disabled=true;
   document.getElementById('payTxt').textContent='Processing...';
@@ -847,7 +913,7 @@ async function submitOrder() {
   } catch(err) {
     document.getElementById('payBtn').disabled=false;
     document.getElementById('paySpinner').classList.remove('show');
-    let sub2=0; sel.forEach(id=>sub2+=prices[id]*qtys[id]);
+    let sub2=0; Object.keys(cart).forEach(id=>sub2+=prices[id]*cart[id]);
     document.getElementById('payTxt').textContent='Pay $'+sub2.toFixed(2);
     errEl.textContent=err.message||'Something went wrong. Please try again.';
     errEl.classList.add('show');
