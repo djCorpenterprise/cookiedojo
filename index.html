@@ -827,7 +827,7 @@ async function submitOrder() {
 
   try {
     // ── Replace this URL with your Vercel backend endpoint ──
-    const res = await fetch('https://YOUR-BACKEND-URL/create-payment-intent', {
+    const res = await fetch('https://cookiedojo-4gpz.vercel.app/api/create-payment-intent', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({amount:Math.round(subtotal*100),currency:'usd',customer_name:name,customer_email:email,customer_phone:phone,items,notes,address})
