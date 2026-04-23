@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,30 +11,42 @@ export const metadata: Metadata = {
 export default function CorporatePage() {
   return (
     <>
-      {/* Hero */}
+      {/* Hero with photo */}
       <section className="bg-cream-light pt-16 md:pt-24 pb-20">
         <div className="max-w-content mx-auto px-6 md:px-10">
-          <div className="max-w-3xl">
-            <p className="eyebrow mb-4">For Business</p>
-            <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] text-espresso">
-              Corporate <span className="italic text-rose">Gifting</span> &amp;
-              Branded Desserts.
-            </h1>
-            <div className="divider-ornament mt-8 !justify-start">
-              <div className="diamond" />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="eyebrow mb-4">For Business</p>
+              <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] text-espresso">
+                Corporate <span className="italic text-rose">Gifting</span> &amp;
+                Branded Desserts.
+              </h1>
+              <div className="divider-ornament mt-8 !justify-start">
+                <div className="diamond" />
+              </div>
+              <p className="mt-6 text-lg text-espresso/75 leading-relaxed max-w-2xl">
+                Make your next client meeting, employee recognition event, or
+                holiday gifting campaign unforgettable. We create custom treats
+                matched to your brand, with personalized thank-you cards included.
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Link href="/quote" className="btn-primary">
+                  Request a Corporate Quote
+                </Link>
+                <Link href="/menu" className="btn-secondary">
+                  View Menu
+                </Link>
+              </div>
             </div>
-            <p className="mt-6 text-lg text-espresso/75 leading-relaxed max-w-2xl">
-              Make your next client meeting, employee recognition event, or
-              holiday gifting campaign unforgettable. We create custom treats
-              matched to your brand, with personalized thank-you cards included.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Link href="/quote" className="btn-primary">
-                Request a Corporate Quote
-              </Link>
-              <Link href="/menu" className="btn-secondary">
-                View Menu
-              </Link>
+            <div className="relative aspect-[4/5] lg:h-[620px] lg:aspect-auto shadow-[0_30px_60px_-20px_rgba(61,40,23,0.25)]">
+              <Image
+                src="/images/gift-box-pink.jpg"
+                alt="Custom themed gift box with ribbon, dipped treats, and branded desserts"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
             </div>
           </div>
         </div>
@@ -72,6 +85,35 @@ export default function CorporatePage() {
               number="04"
               title="Local Delivery"
               body="Delivered within 25 miles of Jacksonville. Delivery fee quoted by mileage at the time of order."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Themed showcase */}
+      <section className="bg-cream-light py-20">
+        <div className="max-w-content mx-auto px-6 md:px-10">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <p className="eyebrow mb-4">Color-Matched in Action</p>
+            <h2 className="font-serif text-4xl text-espresso leading-tight">
+              Your brand, in edible form.
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <ThemedShot
+              image="/images/gift-box-pink.jpg"
+              alt="Pink themed gift box with variety of treats"
+              caption="Soft pinks &amp; florals"
+            />
+            <ThemedShot
+              image="/images/cake-pops-green.jpg"
+              alt="Green themed gift box with cake pops"
+              caption="Rich greens &amp; golds"
+            />
+            <ThemedShot
+              image="/images/cake-pops-blue.jpg"
+              alt="Blue themed cake pops and dipped treats"
+              caption="Electric blues"
             />
           </div>
         </div>
@@ -225,6 +267,34 @@ function Feature({
       />
       <div className="w-10 h-px bg-sage mb-4" />
       <p className="text-espresso/70 text-sm leading-relaxed">{body}</p>
+    </div>
+  );
+}
+
+function ThemedShot({
+  image,
+  alt,
+  caption,
+}: {
+  image: string;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <div>
+      <div className="relative aspect-[4/5] overflow-hidden bg-cream-dark">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+        />
+      </div>
+      <p
+        className="mt-4 text-center eyebrow !text-rose"
+        dangerouslySetInnerHTML={{ __html: caption }}
+      />
     </div>
   );
 }
