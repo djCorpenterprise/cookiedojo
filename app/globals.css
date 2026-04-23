@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #F5EFE0;
+  --cream-light: #FAF6EC;
+  --espresso: #3D2817;
+  --sage: #7A8F5A;
+  --rose: #C67B6B;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream-light);
+  color: var(--espresso);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant divider with diamond, matching the menu */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--rose);
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  width: 3rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.5;
+}
+
+.divider-ornament .diamond {
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  transform: rotate(45deg);
+}
+
+/* Section label — small caps sage green, used throughout */
+.eyebrow {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* Bamboo background flourish */
+.bamboo-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.bamboo-bg::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  bottom: -40px;
+  width: 200px;
+  height: 300px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300' fill='none' stroke='%237A8F5A' stroke-width='2' opacity='0.12'%3E%3Cpath d='M40 290 L40 10 M40 60 L70 40 M40 120 L70 100 M40 180 L70 160 M40 240 L70 220' stroke-linecap='round'/%3E%3Cellipse cx='70' cy='40' rx='18' ry='8' transform='rotate(-30 70 40)'/%3E%3Cellipse cx='70' cy='100' rx='18' ry='8' transform='rotate(-30 70 100)'/%3E%3Cellipse cx='70' cy='160' rx='18' ry='8' transform='rotate(-30 70 160)'/%3E%3Cellipse cx='70' cy='220' rx='18' ry='8' transform='rotate(-30 70 220)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Button base styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background-color: var(--espresso);
+  color: var(--cream-light);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  border: 1px solid var(--espresso);
+}
+
+.btn-primary:hover {
+  background-color: var(--sage-dark, #5E7245);
+  border-color: var(--sage-dark, #5E7245);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background-color: transparent;
+  color: var(--espresso);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  border: 1px solid var(--espresso);
+}
+
+.btn-secondary:hover {
+  background-color: var(--espresso);
+  color: var(--cream-light);
+}
+
+/* Form input base */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: white;
+  border: 1px solid #D4C8B5;
+  color: var(--espresso);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px rgba(122, 143, 90, 0.15);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  margin-bottom: 0.5rem;
+}
